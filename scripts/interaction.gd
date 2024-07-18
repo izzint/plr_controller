@@ -11,6 +11,7 @@ Interaction Control
 var holding : bool = false
 
 func _physics_process(_delta) -> void:
+	print(get_collider())
 	if Input.is_action_just_pressed("plr_interact"):
 		if holding:
 			hold_joint.node_b = NodePath()

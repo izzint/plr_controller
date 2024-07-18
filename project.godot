@@ -22,6 +22,15 @@ window/size/viewport_height=480
 window/stretch/mode="viewport"
 window/vsync/vsync_mode=3
 
+[file_customization]
+
+folder_colors={
+"res://models/": "pink",
+"res://scenes/": "orange",
+"res://scripts/": "purple",
+"res://textures/": "red"
+}
+
 [input]
 
 plr_forward={
@@ -64,3 +73,7 @@ plr_throw={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":0,"position":Vector2(0, 0),"global_position":Vector2(0, 0),"factor":1.0,"button_index":1,"canceled":false,"pressed":false,"double_click":false,"script":null)
 ]
 }
+
+[physics]
+
+3d/physics_engine="JoltPhysics3D"
