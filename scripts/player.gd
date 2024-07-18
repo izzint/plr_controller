@@ -11,7 +11,6 @@ Main mode of character movement
 @export var gravity : float = 17
 
 @export_category("Camera Settings")
-@export var headbob_noise : FastNoiseLite; # Unused
 @export var lean_strength : float = 10
 
 func _physics_process(delta) -> void:
