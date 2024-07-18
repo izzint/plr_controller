@@ -8,7 +8,7 @@ Main mode of character movement
 @export_category("Player Settings")
 @export var acceleration : float = 1
 @export var speed : float = 5
-@export var gravity : float = 17
+@export var gravity : float = 290
 
 @export_category("Camera Settings")
 @export var lean_strength : float = 10
@@ -28,7 +28,7 @@ func update_movement(delta : float) -> void:
 		velocity.y -= gravity * delta
 	
 	if is_on_floor() and Input.is_action_just_pressed("plr_jump"):
-		velocity.y = 1500 * delta
+		velocity.y += gravity * delta * 15.0
 	
 	move_and_slide() # Move
 
