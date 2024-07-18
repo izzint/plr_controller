@@ -18,9 +18,11 @@ func _physics_process(_delta) -> void:
 			held_object = get_collider() as RigidBody3D
 			grab_object(held_object)
 
+## Grab a targeted RigidBody
 func grab_object(target : RigidBody3D) -> void:
 		hold_joint.node_b = target.get_path()
 
+## Release the current RigidBody
 func release_object() -> void:
 	hold_joint.node_b = NodePath()
 	held_object = null

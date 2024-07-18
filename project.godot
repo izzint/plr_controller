@@ -76,4 +76,8 @@ plr_throw={
 
 [physics]
 
-3d/physics_engine="JoltPhysics3D"
+3d/physics_engine="GodotPhysics3D"
+
+[rendering]
+
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
