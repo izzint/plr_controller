@@ -4,12 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://chvads56qdsa1" path="res://scenes/player.tscn" id="1_vkom4"]
 [ext_resource type="PackedScene" uid="uid://fklw1k4vd7qj" path="res://models/tincan.glb" id="2_0ewvu"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_douw2"]
-albedo_color = Color(0.0540917, 0.425854, 0.336603, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_po63c"]
-albedo_color = Color(0.439369, 0.386431, 0.111398, 1)
-
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y34xu"]
 sky_top_color = Color(0.573392, 0.402807, 0.326605, 1)
 sky_horizon_color = Color(0.743249, 0.627758, 0.570983, 1)
@@ -23,7 +17,36 @@ sky = SubResource("Sky_pxtvx")
 tonemap_white = 2.35
 ssao_intensity = 6.7
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_douw2"]
+albedo_color = Color(0.0540917, 0.425854, 0.336603, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_po63c"]
+albedo_color = Color(0.439369, 0.386431, 0.111398, 1)
+
 [node name="Example" type="Node3D"]
+
+[node name="Entities" type="Node3D" parent="."]
+
+[node name="Player" parent="Entities" instance=ExtResource("1_vkom4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.305246, 0)
+
+[node name="Tincan" parent="Entities" instance=ExtResource("2_0ewvu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0897, 0.0288476, -2.44607)
+
+[node name="Tincan2" parent="Entities" instance=ExtResource("2_0ewvu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6312, 0.0288476, -2.44607)
+
+[node name="Tincan3" parent="Entities" instance=ExtResource("2_0ewvu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.13827, 0.0288476, -2.44607)
+
+[node name="Lighting" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Lighting"]
+environment = SubResource("Environment_duo73")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
+transform = Transform3D(0.662502, 0.626479, -0.410628, 0, 0.548191, 0.836353, 0.74906, -0.554086, 0.363178, 0, 0, 0)
+shadow_enabled = true
 
 [node name="WorldGeo" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
@@ -62,22 +85,3 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 3.7413
 size = Vector3(1.5332, 0.252197, 1.6261)
 texture_albedo = ExtResource("1_ocgh1")
 distance_fade_enabled = true
-
-[node name="Player" parent="." instance=ExtResource("1_vkom4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.305246, 0)
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_duo73")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.662502, 0.626478, -0.410628, 0, 0.548191, 0.836353, 0.74906, -0.554086, 0.363178, 0, 0, 0)
-shadow_enabled = true
-
-[node name="tincan" parent="." instance=ExtResource("2_0ewvu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0897, 0.0288476, -2.44607)
-
-[node name="tincan2" parent="." instance=ExtResource("2_0ewvu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6312, 0.0288476, -2.44607)
-
-[node name="tincan3" parent="." instance=ExtResource("2_0ewvu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.13827, 0.0288476, -2.44607)
