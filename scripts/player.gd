@@ -54,7 +54,7 @@ func _input(event) -> void:
 		rotate_y(-event.relative.x * mouse_sens)
 		$Head.rotate_x(-event.relative.y * mouse_sens)
 		$Head.rotation.x = clamp($Head.rotation.x, -1.5, 1.5)
-
+		
 	# Handle mouse capture
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
