@@ -46,14 +46,14 @@ func update_movement(delta : float) -> void:
 func update_lean(delta : float) -> void:
 	var lean_dir = Input.get_action_strength("plr_right") - Input.get_action_strength("plr_left")
 	$Head.rotation.z = lerp_angle($Head.rotation.z, -lean_dir * 0.03, delta * lean_strength)
-	$Head.rotation.x = clamp($Head.rotation.x, -1.5, 1.5)
+	$Head.rotation.z = clamp($Head.rotation.z, -1.5, 1.5)
 
 func _input(event) -> void:
 	# Mouse look
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		rotate_y(-event.relative.x * mouse_sens)
 		$Head.rotate_x(-event.relative.y * mouse_sens)
-		$Head.rotation.x = clamp($Head.rotation.x, -1.5, 1.5)
+		$Head.rotation.x = (clamp($Head.rotation.x, -1.5, 1.5))
 		
 	# Handle mouse capture
 	if event is InputEventMouseButton:
