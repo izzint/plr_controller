@@ -4,13 +4,13 @@ extends RayCast3D
 Interaction Control
 '''
 
-### The joint where the interactable is held from
+## The joint where the interactable is held from
 @export var hold_joint : Generic6DOFJoint3D
 
-### Throw Strength
+## Throw Strength
 @export var throw_strength : float
 
-### The current object being held by the Player
+## The current object being held by the Player
 var held_object : RigidBody3D
 
 func _physics_process(_delta) -> void:
