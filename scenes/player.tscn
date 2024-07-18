@@ -33,7 +33,10 @@ script = ExtResource("2_j6pbx")
 hold_joint = NodePath("HoldJoint")
 
 [node name="HoldJoint" type="Generic6DOFJoint3D" parent="Head/InteractionRaycast"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.495825, 2.98023e-08)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -0.154454, 1.19209e-07)
+node_a = NodePath("../HoldStart")
+
+[node name="HoldStart" type="StaticBody3D" parent="Head/InteractionRaycast"]
 
 [node name="Flashlight" type="Node3D" parent="."]
 visible = false
