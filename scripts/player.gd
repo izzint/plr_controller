@@ -8,10 +8,16 @@ Main mode of character movement
 @export_category("Player Settings")
 @export var acceleration : float = 1
 @export var speed : float = 5
-@export var gravity : float = 290
+@export var gravity : float = 32
+@export var mouse_sens : float = .005
+@export var jump_spd : float = 12.0
 
 @export_category("Camera Settings")
 @export var lean_strength : float = 10
+
+var lerp_spd : float = 8.5
+var dir = Vector3.ZERO
+var current_spd = 5.0
 
 func _physics_process(delta) -> void:
 	update_movement(delta)
@@ -19,16 +25,22 @@ func _physics_process(delta) -> void:
 	flashlight(delta)
 
 func update_movement(delta : float) -> void:
-	var dir = Input.get_vector("plr_left", "plr_right", "plr_forward", "plr_backwards")
-	var wish_dir = (basis * Vector3(dir.x, 0, dir.y)).normalized()
+	var wish_dir = Input.get_vector("plr_left", "plr_right", "plr_forward", "plr_backwards")
+	dir = lerp(dir,(transform.basis * Vector3(wish_dir.x, 0, wish_dir.y)).normalized(), delta * lerp_spd)
 		
-	velocity = wish_dir * speed
 	
+	if dir:
+		velocity.x = dir.x * current_spd
+		velocity.z = dir.z * current_spd
+	
+	if Input.is_action_pressed("plr_jump") and is_on_floor():
+		velocity.y += gravity * delta * jump_spd
+		
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-	
-	if is_on_floor() and Input.is_action_just_pressed("plr_jump"):
-		velocity.y += gravity * delta * 15.0
+		
+	if velocity.y >= 64:
+		velocity.y = 64
 	
 	move_and_slide() # Move
 
@@ -39,8 +51,8 @@ func update_lean(delta : float) -> void:
 func _input(event) -> void:
 	# Mouse look
 	if event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-		rotate_y(-event.relative.x * 0.002)
-		$Head.rotate_x(-event.relative.y * 0.002)
+		rotate_y(-event.relative.x * mouse_sens)
+		$Head.rotate_x(-event.relative.y * mouse_sens)
 		$Head.rotation.x = clamp($Head.rotation.x, -1.5, 1.5)
 
 	# Handle mouse capture
