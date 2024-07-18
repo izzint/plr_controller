@@ -12,7 +12,7 @@ var held_object : RigidBody3D
 
 func _physics_process(_delta) -> void:
 	if Input.is_action_just_pressed("plr_interact"):
-		if not held_object:
+		if held_object:
 			release_object()
 		elif is_colliding() and get_collider() is RigidBody3D:
 			held_object = get_collider() as RigidBody3D

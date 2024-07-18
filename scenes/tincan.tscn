@@ -1,10 +1,22 @@
 [gd_scene load_steps=10 format=3 uid="uid://g2n2pwy8014c"]
 
 [ext_resource type="Texture2D" uid="uid://dv6kvolb2uni7" path="res://textures/tincan_tincan.png" id="1_713ss"]
-[ext_resource type="Script" path="res://scripts/interactable.gd" id="1_kqoxu"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2uxnn"]
 bounce = 0.37
+
+[sub_resource type="GDScript" id="GDScript_mo1fh"]
+script/source = "class_name Interactable 
+extends RigidBody3D
+
+'''
+Interactable Physics Object (i can really grab)
+'''
+
+@export_category(\"Entity Settings\")
+@export var is_grabable : bool
+@export var grabable_body : RigidBody3D
+"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jfksx"]
 resource_name = "Material.001"
@@ -55,11 +67,11 @@ points = PackedVector3Array(-0.0848176, -0.100838, -0.111018, 0.141426, 0.143274
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_brrb1"]
 points = PackedVector3Array(0.0180602, 0.149961, 0.149567, -0.12103, -0.144417, 0.0599913, 0.119373, -0.14587, 0.0595492, 0.122057, 0.149961, 0.05856, -0.00790879, -0.149121, 0.149567, -0.120976, 0.145192, 0.0600113, -0.105426, 0.143433, 0.117049, 0.102568, -0.149121, 0.110545, 0.109073, 0.149961, 0.110545, -0.105426, -0.149121, 0.110545, -0.0144131, 0.149961, 0.149567, -0.11193, 0.149961, 0.110545, 0.0115559, -0.149121, 0.149567, 0.102568, 0.136934, 0.117049)
 
-[node name="Tincan" type="RigidBody3D" node_paths=PackedStringArray("grabable_body")]
+[node name="Tincan" type="RigidBody3D" node_paths=PackedStringArray("grabable_body") groups=["Interactable"]]
 collision_layer = 2
 mass = 0.25
 physics_material_override = SubResource("PhysicsMaterial_2uxnn")
-script = ExtResource("1_kqoxu")
+script = SubResource("GDScript_mo1fh")
 grabable_body = NodePath(".")
 
 [node name="Tincan" type="MeshInstance3D" parent="."]
