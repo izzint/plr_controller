@@ -27,7 +27,6 @@ func _physics_process(delta) -> void:
 func update_movement(delta : float) -> void:
 	var wish_dir = Input.get_vector("plr_left", "plr_right", "plr_forward", "plr_backwards")
 	dir = lerp(dir,(transform.basis * Vector3(wish_dir.x, 0, wish_dir.y)).normalized(), delta * lerp_spd)
-		
 	
 	if dir:
 		velocity.x = dir.x * current_spd
