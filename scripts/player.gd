@@ -46,6 +46,7 @@ func update_movement(delta : float) -> void:
 func update_lean(delta : float) -> void:
 	var lean_dir = Input.get_action_strength("plr_right") - Input.get_action_strength("plr_left")
 	$Head.rotation.z = lerp_angle($Head.rotation.z, -lean_dir * 0.03, delta * lean_strength)
+	$Head.rotation.x = clamp($Head.rotation.x, -1.5, 1.5)
 
 func _input(event) -> void:
 	# Mouse look
