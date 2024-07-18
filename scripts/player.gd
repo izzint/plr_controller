@@ -16,8 +16,8 @@ Main mode of character movement
 @export var lean_strength : float = 10
 
 var lerp_spd : float = 8.5
-var dir = Vector3.ZERO
-var current_spd = 5.0
+var dir : Vector3 = Vector3.ZERO
+var current_spd : float = 5.0
 
 func _physics_process(delta) -> void:
 	update_movement(delta)
