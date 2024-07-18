@@ -7,17 +7,21 @@ Interaction Control
 ### The joint where the interactable is held from
 @export var hold_joint : Generic6DOFJoint3D
 
-### Is the player currently holding something?
-var holding : bool = false
+### The current object being held by the Player
+var held_object : RigidBody3D
 
 func _physics_process(_delta) -> void:
-	print(get_collider())
 	if Input.is_action_just_pressed("plr_interact"):
-		if holding:
-			hold_joint.node_b = NodePath()
-			holding = false
+		if not held_object:
+			release_object()
 		else:
 			if is_colliding() and get_collider() is RigidBody3D:
-				var target = get_collider() as RigidBody3D
-				holding = true
-				hold_joint.node_b = target.get_path()
+				held_object = get_collider() as RigidBody3D
+				grab_object(held_object)
+
+func grab_object(target : RigidBody3D) -> void:
+		hold_joint.node_b = target.get_path()
+
+func release_object() -> void:
+	hold_joint.node_b = NodePath()
+	held_object = null
