@@ -13,6 +13,7 @@ Main mode of character movement
 @export var jump_spd : float = 12.0
 
 @export_category("Camera Settings")
+@export var lean_camera : bool = false
 @export var lean_strength : float = 10
 
 var lerp_spd : float = 8.5
@@ -21,8 +22,10 @@ var current_spd : float = 5.0
 
 func _physics_process(delta) -> void:
 	update_movement(delta)
-	update_lean(delta)
 	flashlight(delta)
+
+	if lean_camera:
+		update_lean(delta)
 
 func update_movement(delta : float) -> void:
 	var wish_dir = Input.get_vector("plr_left", "plr_right", "plr_forward", "plr_backwards")
